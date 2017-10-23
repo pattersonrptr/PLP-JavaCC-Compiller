@@ -5,13 +5,15 @@ import parser.*;
 
 public class PrintTree {
     int kk;
+    StringBuilder sb;
 
     public PrintTree() {
         kk = 1; // inicializa contador de nós
+        sb = new StringBuilder();
     }
 
-    public void printRoot(ListNode x) {
-        if (x == null) {
+    public String printRoot(ListNode x) {
+    	if (x == null) {
             System.out.println("Árvore sintática vazia. Nada a ser exibido.");
         } else {
             numberClassDeclListNode(x);
@@ -19,6 +21,7 @@ public class PrintTree {
         }
 
         System.out.println();
+        return sb.toString();
     }
 
     // ------------- lista de classes --------------------------
@@ -38,9 +41,12 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": ListNode (ClassDeclNode)  ===> " +
-            x.node.number + " " +
-            ((x.next == null) ? "null" : String.valueOf(x.next.number)));
+        String no = x.number + ": ListNode (ClassDeclNode)  ===> " +
+                x.node.number + " " +
+                ((x.next == null) ? "null" : String.valueOf(x.next.number));
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
 
         printClassDeclNode((ClassDeclNode) x.node);
         printClassDeclListNode(x.next);
@@ -57,16 +63,24 @@ public class PrintTree {
     }
 
     public void printClassDeclNode(ClassDeclNode x) {
+    	
+    	
+    	
         if (x == null) {
             return;
         }
 
         System.out.println();
-        System.out.print(x.number + ": ClassDeclNode ===> " + x.name.image +
-            " " + ((x.supername == null) ? "null" : x.supername.image) + " " +
-            ((x.body == null) ? "null" : String.valueOf(x.body.number)));
+        String no = x.number + ": ClassDeclNode ===> " + x.name.image +
+                " " + ((x.supername == null) ? "null" : x.supername.image) + " " +
+                ((x.body == null) ? "null" : String.valueOf(x.body.number));
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
 
         printClassBodyNode(x.body);
+        
+        sb.append(x.body).append("\n");
     }
 
     //------------------------- Corpo da classe -------------------
@@ -88,12 +102,15 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": ClassBodyNode ===> " +
-            ((x.clist == null) ? "null" : String.valueOf(x.clist.number)) +
-            " " + ((x.vlist == null) ? "null" : String.valueOf(x.vlist.number)) +
-            " " +
-            ((x.ctlist == null) ? "null" : String.valueOf(x.ctlist.number)) +
-            " " + ((x.mlist == null) ? "null" : String.valueOf(x.mlist.number)));
+        String no = x.number + ": ClassBodyNode ===> " +
+                ((x.clist == null) ? "null" : String.valueOf(x.clist.number)) +
+                " " + ((x.vlist == null) ? "null" : String.valueOf(x.vlist.number)) +
+                " " +
+                ((x.ctlist == null) ? "null" : String.valueOf(x.ctlist.number)) +
+                " " + ((x.mlist == null) ? "null" : String.valueOf(x.mlist.number));
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
 
         printClassDeclListNode(x.clist);
         printVarDeclListNode(x.vlist);
@@ -118,9 +135,12 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": ListNode (VarDeclNode) ===> " +
-            x.node.number + " " +
-            ((x.next == null) ? "null" : String.valueOf(x.next.number)));
+        String no = x.number + ": ListNode (VarDeclNode) ===> " +
+                x.node.number + " " +
+                ((x.next == null) ? "null" : String.valueOf(x.next.number));
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
 
         printVarDeclNode((VarDeclNode) x.node);
         printVarDeclListNode(x.next);
@@ -142,8 +162,12 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": VarDeclNode ===> " + x.position.image +
-            " " + x.vars.number);
+        String no = x.number + ": VarDeclNode ===> " + x.position.image +
+                " " + x.vars.number;
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
+        
         printvarListNode(x.vars);
     }
 
@@ -164,9 +188,12 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": ListNode (VarNode) ===> " +
-            x.node.number + " " +
-            ((x.next == null) ? "null" : String.valueOf(x.next.number)));
+        String no = x.number + ": ListNode (VarNode) ===> " +
+                x.node.number + " " +
+                ((x.next == null) ? "null" : String.valueOf(x.next.number));
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
 
         printVarNode((VarNode) x.node);
         printvarListNode(x.next);
@@ -189,15 +216,17 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": ListNode (ConstructDeclNode) ===> " +
-            x.node.number + " " +
-            ((x.next == null) ? "null" : String.valueOf(x.next.number)));
+        String no = x.number + ": ListNode (ConstructDeclNode) ===> " +
+                x.node.number + " " +
+                ((x.next == null) ? "null" : String.valueOf(x.next.number));
+        System.out.print(no);
+        sb.append(no).append("\n");
 
         printConstructDeclNode((ConstructDeclNode) x.node);
         printConstructDeclListNode(x.next);
     }
 
-    // ------------------ Declarac�o de construtor -----------------
+    // ------------------ Declaracão de construtor -----------------
     public void numberConstructDeclNode(ConstructDeclNode x) {
         if (x == null) {
             return;
@@ -213,8 +242,12 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": ConstructDeclNode ===> " +
-            x.body.number);
+        String no = x.number + ": ConstructDeclNode ===> " +
+                x.body.number;
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
+        
         printMethodBodyNode(x.body);
     }
 
@@ -235,9 +268,13 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": ListNode (MethodDeclNode) ===> " +
-            x.node.number + " " +
-            ((x.next == null) ? "null" : String.valueOf(x.next.number)));
+        String no = x.number + ": ListNode (MethodDeclNode) ===> " +
+                x.node.number + " " +
+                ((x.next == null) ? "null" : String.valueOf(x.next.number));
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
+        
         printMethodDeclNode((MethodDeclNode) x.node);
         printMethodDeclListNode(x.next);
     }
@@ -258,9 +295,13 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": MethodDeclNode ===> " +
-            x.position.image + " " + ((x.dim == 0) ? "" : ("[" + x.dim + "] ")) +
-            x.name.image + " " + x.body.number);
+        String no = x.number + ": MethodDeclNode ===> " +
+                x.position.image + " " + ((x.dim == 0) ? "" : ("[" + x.dim + "] ")) +
+                x.name.image + " " + x.body.number;
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
+        
         printMethodBodyNode(x.body);
     }
 
@@ -281,9 +322,13 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": MethodBodyNode ===> " +
-            ((x.param == null) ? "null" : String.valueOf(x.param.number)) +
-            " " + x.stat.number);
+        String no = x.number + ": MethodBodyNode ===> " +
+                ((x.param == null) ? "null" : String.valueOf(x.param.number)) +
+                " " + x.stat.number;        
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
+        
         printVarDeclListNode(x.param);
         printStatementNode(x.stat);
     }
@@ -304,7 +349,11 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": BlockNode ===> " + x.stats.number);
+        String no = x.number + ": BlockNode ===> " + x.stats.number;
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
+        
         printStatementListNode(x.stats);
     }
 
@@ -325,9 +374,12 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": ListNode (StatementNode) ===> " +
-            x.node.number + " " +
-            ((x.next == null) ? "null" : String.valueOf(x.next.number)));
+        String no = x.number + ": ListNode (StatementNode) ===> " +
+                x.node.number + " " +
+                ((x.next == null) ? "null" : String.valueOf(x.next.number));
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
 
         printStatementNode((StatementNode) x.node);
         printStatementListNode(x.next);
@@ -349,7 +401,11 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": PrintNode ===> " + x.expr.number);
+        String no = x.number + ": PrintNode ===> " + x.expr.number;
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
+        
         printExpreNode(x.expr);
     }
 
@@ -369,7 +425,11 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": ReadNode ===> " + x.expr.number);
+        String no = x.number + ": ReadNode ===> " + x.expr.number;
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
+        
         printExpreNode(x.expr);
     }
 
@@ -389,8 +449,12 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": ReturnNode ===> " +
-            ((x.expr == null) ? "null" : String.valueOf(x.expr.number)));
+        String no = x.number + ": ReturnNode ===> " +
+                ((x.expr == null) ? "null" : String.valueOf(x.expr.number));
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
+        
         printExpreNode(x.expr);
     }
 
@@ -410,12 +474,16 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": SuperNode ===> " +
-            ((x.args == null) ? "null" : String.valueOf(x.args.number)));
+        String no = x.number + ": SuperNode ===> " +
+                ((x.args == null) ? "null" : String.valueOf(x.args.number));
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
+        
         printExpreListNode(x.args);
     }
 
-    // ------------------------- Comando de atribui��o -------------------
+    // ------------------------- Comando de atribuição -------------------
     public void numberAtribNode(AtribNode x) {
         if (x == null) {
             return;
@@ -432,8 +500,12 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": AtribNode ===> " + x.expr1.number + " " +
-            x.expr2.number);
+        String no = x.number + ": AtribNode ===> " + x.expr1.number + " " +
+                x.expr2.number;
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
+        
         printExpreNode(x.expr1);
         printExpreNode(x.expr2);
     }
@@ -456,9 +528,12 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": IfNode ===> " + x.expr.number + " " +
-            x.stat1.number + " " +
-            ((x.stat2 == null) ? "null" : String.valueOf(x.stat2.number)));
+        String no = x.number + ": IfNode ===> " + x.expr.number + " " +
+                x.stat1.number + " " +
+                ((x.stat2 == null) ? "null" : String.valueOf(x.stat2.number));
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
 
         printExpreNode(x.expr);
         printStatementNode(x.stat1);
@@ -484,11 +559,15 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": ForNode ===> " +
-            ((x.init == null) ? "null" : String.valueOf(x.init.number)) + " " +
-            ((x.expr == null) ? "null" : String.valueOf(x.expr.number)) + " " +
-            ((x.incr == null) ? "null" : String.valueOf(x.incr.number)) + " " +
-            x.stat.number);
+        String no = x.number + ": ForNode ===> " +
+                ((x.init == null) ? "null" : String.valueOf(x.init.number)) + " " +
+                ((x.expr == null) ? "null" : String.valueOf(x.expr.number)) + " " +
+                ((x.incr == null) ? "null" : String.valueOf(x.incr.number)) + " " +
+                x.stat.number;
+        
+        sb.append(no).append("\n");
+        
+        System.out.print(no);
 
         printAtribNode(x.init);
         printExpreNode(x.expr);
@@ -511,7 +590,10 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": BreakNode");
+        String no = x.number + ": BreakNode";
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
     }
 
     // --------------------------- Comando vazio -------------------
@@ -529,10 +611,13 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": NopNode");
+        String no = x.number + ": NopNode";
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
     }
 
-    // -------------------------- Aloca��o de objeto ------------------------
+    // -------------------------- Alocação de objeto ------------------------
     public void numberNewObjectNode(NewObjectNode x) {
         if (x == null) {
             return;
@@ -548,13 +633,16 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": NewObjectNode ===> " + x.name.image +
-            " " + ((x.args == null) ? "null" : String.valueOf(x.args.number)));
+        String no = x.number + ": NewObjectNode ===> " + x.name.image +
+                " " + ((x.args == null) ? "null" : String.valueOf(x.args.number));
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
 
         printExpreListNode(x.args);
     }
 
-    // -------------------------- Aloca��o de array ------------------------
+    // -------------------------- Alocação de array ------------------------
     public void numberNewArrayNode(NewArrayNode x) {
         if (x == null) {
             return;
@@ -570,13 +658,16 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": NewArrayNode ===> " + x.name.image +
-            " " + ((x.dims == null) ? "null" : String.valueOf(x.dims.number)));
+        String no = x.number + ": NewArrayNode ===> " + x.name.image +
+                " " + ((x.dims == null) ? "null" : String.valueOf(x.dims.number));
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
 
         printExpreListNode(x.dims);
     }
 
-    // --------------------------- Lista de express�es ---------------
+    // --------------------------- Lista de expressões ---------------
     public void numberExpreListNode(ListNode x) {
         if (x == null) {
             return;
@@ -593,14 +684,18 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": ListNode (ExpreNode) ===> " +
-            x.node.number + " " +
-            ((x.next == null) ? "null" : String.valueOf(x.next.number)));
+        String no = x.number + ": ListNode (ExpreNode) ===> " +
+                x.node.number + " " +
+                ((x.next == null) ? "null" : String.valueOf(x.next.number));
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
+        
         printExpreNode((ExpreNode) x.node);
         printExpreListNode(x.next);
     }
 
-    // --------------------- Express�o relacional -------------------
+    // --------------------- Expressão relacional -------------------
     public void numberRelationalNode(RelationalNode x) {
         if (x == null) {
             return;
@@ -617,13 +712,17 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": RelationalNode ===> " + x.expr1.number +
-            " " + x.position.image + " " + x.expr2.number);
+        String no = x.number + ": RelationalNode ===> " + x.expr1.number +
+                " " + x.position.image + " " + x.expr2.number;
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
+        
         printExpreNode(x.expr1);
         printExpreNode(x.expr2);
     }
 
-    // ------------------------ Soma ou subtra��o  -------------------
+    // ------------------------ Soma ou subtração  -------------------
     public void numberAddNode(AddNode x) {
         if (x == null) {
             return;
@@ -640,13 +739,17 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": AddNode ===> " + x.expr1.number + " " +
-            x.position.image + " " + x.expr2.number);
+        String no = x.number + ": AddNode ===> " + x.expr1.number + " " +
+                x.position.image + " " + x.expr2.number;
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
+        
         printExpreNode(x.expr1);
         printExpreNode(x.expr2);
     }
 
-    // ---------------------- Multiplica��o ou divis�o --------------------
+    // ---------------------- Multiplicação ou divisão --------------------
     public void numberMultNode(MultNode x) {
         if (x == null) {
             return;
@@ -663,13 +766,17 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": MultNode ===> " + x.expr1.number + " " +
-            x.position.image + " " + x.expr2.number);
+        String no = x.number + ": MultNode ===> " + x.expr1.number + " " +
+                x.position.image + " " + x.expr2.number;
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
+        
         printExpreNode(x.expr1);
         printExpreNode(x.expr2);
     }
 
-    // ------------------------- Express�o un�ria ------------------------
+    // ------------------------- Expressão unária ------------------------
     public void numberUnaryNode(UnaryNode x) {
         if (x == null) {
             return;
@@ -685,8 +792,12 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": UnaryNode ===> " + x.position.image +
-            " " + x.expr.number);
+        String no = x.number + ": UnaryNode ===> " + x.position.image +
+                " " + x.expr.number;
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
+        
         printExpreNode(x.expr);
     }
 
@@ -705,7 +816,10 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": IntConstNode ===> " + x.position.image);
+        String no = x.number + ": IntConstNode ===> " + x.position.image;
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
     }
 
     // ------------------------ Constante string ----------------------------
@@ -723,8 +837,11 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": StringConstNode ===> " +
-            x.position.image);
+        String no = x.number + ": StringConstNode ===> " +
+                x.position.image;
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
     }
 
     // ------------------------------ Constante null --------------------------
@@ -742,10 +859,13 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": NullConstNode ===> " + x.position.image);
+        String no = x.number + ": NullConstNode ===> " + x.position.image;
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
     }
 
-    // -------------------------------- Nome de vari�vel ------------------
+    // -------------------------------- Nome de variável ------------------
     public void numberVarNode(VarNode x) {
         if (x == null) {
             return;
@@ -760,11 +880,14 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": VarNode ===> " + x.position.image + " " +
-            ((x.dim == 0) ? "" : ("[" + x.dim + "]")));
+        String no = x.number + ": VarNode ===> " + x.position.image + " " +
+                ((x.dim == 0) ? "" : ("[" + x.dim + "]"));
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
     }
 
-    // ---------------------------- Chamada de m�todo ------------------------
+    // ---------------------------- Chamada de método ------------------------
     public void numberCallNode(CallNode x) {
         if (x == null) {
             return;
@@ -781,14 +904,18 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": CallNode ===> " + x.expr.number + " " +
-            x.meth.image + " " +
-            ((x.args == null) ? "null" : String.valueOf(x.args.number)));
+        String no = x.number + ": CallNode ===> " + x.expr.number + " " +
+                x.meth.image + " " +
+                ((x.args == null) ? "null" : String.valueOf(x.args.number));
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
+        
         printExpreNode(x.expr);
         printExpreListNode(x.args);
     }
 
-    // --------------------------- Indexa��o de vari�vel ---------------
+    // --------------------------- Indexação de variável ---------------
     public void numberIndexNode(IndexNode x) {
         if (x == null) {
             return;
@@ -805,13 +932,17 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": IndexNode ===> " + x.expr1.number + " " +
-            x.expr2.number);
+        String no = x.number + ": IndexNode ===> " + x.expr1.number + " " +
+                x.expr2.number;
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
+        
         printExpreNode(x.expr1);
         printExpreNode(x.expr2);
     }
 
-    // -------------------------- Acesso a campo de vari�vel ---------------
+    // -------------------------- Acesso a campo de variável ---------------
     public void numberDotNode(DotNode x) {
         if (x == null) {
             return;
@@ -827,12 +958,16 @@ public class PrintTree {
         }
 
         System.out.println();
-        System.out.print(x.number + ": DotNode ===> " + x.expr.number + " " +
-            x.field.image);
+        String no = x.number + ": DotNode ===> " + x.expr.number + " " +
+                x.field.image;
+        System.out.print(no);
+        
+        sb.append(no).append("\n");
+        
         printExpreNode(x.expr);
     }
 
-    // --------------------------- Express�o em geral --------------------------
+    // --------------------------- Expressão em geral --------------------------
     public void printExpreNode(ExpreNode x) {
         if (x instanceof NewObjectNode) {
             printNewObjectNode((NewObjectNode) x);

@@ -85,8 +85,10 @@ Token lastError = null;
     {
         if (print_tree)                                                 // Exibe a árvore
         {
-            PrintTree prt = new PrintTree();    // Chama método para imprimir árvore
-            prt.printRoot(root);                        // passando o nó raiz 9que é o token <program>
+            PrintTree prt = new PrintTree();            // Chama método para imprimir árvore
+            String StrTree = prt.printRoot(root);   // passando o nó raiz 9que é o token <program>
+
+            System.out.println("\u005cnStringBuilder: \u005cn" + StrTree);
         }
 
         CodeGen tc = new CodeGen();                             // Cria o gerador de código
@@ -1390,12 +1392,6 @@ RecoverySet f =  new RecoverySet(COMMA).union(g);
     finally { jj_save(3, xla); }
   }
 
-  private boolean jj_3_4() {
-    if (jj_scan_token(IDENT)) return true;
-    if (jj_scan_token(LPAREN)) return true;
-    return false;
-  }
-
   private boolean jj_3R_18() {
     if (jj_scan_token(COMMA)) return true;
     return false;
@@ -1445,6 +1441,12 @@ RecoverySet f =  new RecoverySet(COMMA).union(g);
   private boolean jj_3_2() {
     if (jj_scan_token(IDENT)) return true;
     if (jj_scan_token(IDENT)) return true;
+    return false;
+  }
+
+  private boolean jj_3_4() {
+    if (jj_scan_token(IDENT)) return true;
+    if (jj_scan_token(LPAREN)) return true;
     return false;
   }
 

@@ -102,8 +102,10 @@ Token lastError = null;
     {
         if (print_tree)							// Exibe a árvore
         {
-            PrintTree prt = new PrintTree();	// Chama método para imprimir árvore
-            prt.printRoot(root);     			// passando o nó raiz 9que é o token <program>
+            PrintTree prt = new PrintTree();		// Chama método para imprimir árvore
+            String StrTree = prt.printRoot(root);   // passando o nó raiz 9que é o token <program>
+
+            System.out.println("\nStringBuilder: \n" + StrTree);
         }
         
         CodeGen tc = new CodeGen();				// Cria o gerador de código

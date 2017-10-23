@@ -12,7 +12,7 @@ import java.io.*;
 
 
 public class CodeGen extends TypeCheck {
-    static final String Jasextension = ".jas"; // extens�o do arquivo a ser gerado
+    static final String Jasextension = ".jas"; // extensção do arquivo a ser gerado
     String SourceFile; // nome do arquivo fonte
     String SourcePath; // diret�rio do arquivo fonte
     String SourceAbs; // nome completo do fonte
