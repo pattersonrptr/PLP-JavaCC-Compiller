@@ -9,7 +9,7 @@ public class PrintTree {
 
     public PrintTree() {
         kk = 1; // inicializa contador de nós
-        sb = new StringBuilder();
+        sb = new StringBuilder(); // StringBuilder para construir uma string contendo a árvore sintática
     }
 
     public String printRoot(ListNode x) {
